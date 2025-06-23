@@ -1,13 +1,15 @@
 import { useState } from "react";
 import "../index.css";
 import axios from "axios";
-
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "./UserContex.jsx";
 
 function UserAuthenticationPage(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const {userID, updateChannel, updateUser} = useContext(UserContext);
 
     function handleSubmit(event){
         event.preventDefault();
@@ -51,10 +53,15 @@ function UserAuthenticationPage(){
                     setEmail("");
                     setPassword("");
                     alert("Login Successful!!!........Redirecting to Home Page");
-                    localStorage.clear();
-                    localStorage.setItem("userID",res.data.user);
-                    localStorage.setItem("token",res.data.token);
-                    localStorage.setItem("avatar",res.data.avatar);
+                    
+                    updateUser({
+                        userID : res.data.user,
+                        avatar : res.data.avatar,
+                        token : res.data.token
+                    });
+
+                    updateChannel(res.data.channel);
+
                     navigate("/");
                 }
             }
@@ -75,7 +82,7 @@ function UserAuthenticationPage(){
                 </div>
                 <div>
                     <label htmlFor="loginPassword">Password : </label>
-                    <input onChange={handlePassword} value={password} id="loginPassword" type="text" />
+                    <input onChange={handlePassword} value={password} id="loginPassword" type="password" />
                 </div>
                 <button onClick={handleLogin}>Login</button>
             </form>

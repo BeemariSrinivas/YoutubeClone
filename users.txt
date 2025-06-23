@@ -1,2 +1,5 @@
 mail: welovecric@gmail.com
 password : Cric@123
+
+mail : Micheal Rhody
+password : Rhody@123

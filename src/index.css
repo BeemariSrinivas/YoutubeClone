@@ -1,3 +1,8 @@
+#root button{
+    border-radius: 20px;
+    padding: 4px 8px;
+}
+
 #register{
     text-align: center;
 }
@@ -42,4 +47,161 @@
     align-items: center;
     height: 50svh;
     gap: 10px;
+}
+
+#channel{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#channel button{
+    margin: 6px;
+}
+
+#channelImage{
+height: 20vh;
+width: 100%;
+object-fit: cover;
+object-position: center;
+display: block;
+}
+
+#channeloptions{
+    display: flex;
+    justify-content: flex-start;
+    align-self: center;
+    gap: 10px;
+}
+
+#videoUpload{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#formVideoUpload{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    height: 80vh;
+}
+
+#channelVideo{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: auto;
+    gap: 10px;
+    margin: 6px;
+}
+
+.channelVideo p{
+    margin: 0;
+    padding: 0;
+}
+
+.channelVideo{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    text-align: center;
+}
+
+#videoPlayerArea{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    min-height: 100svh;
+}
+
+#videoPlayerArea > *{
+    border-left: 1px solid black;
+}
+
+#videoinfo{
+    display: flex;
+    flex-direction: column;
+}
+
+#videoMetaData{
+    display: flex;
+    justify-content: space-between;
+}
+
+#videoChannelInfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin: 2px;
+}
+
+#videoChannelInfo button{
+    border-radius: 20px;
+    padding: 4px 8px;
+    background-color: black;
+    color: aliceblue;
+}
+
+#channelNameandSubscribers{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+#channelNameandSubscribers h4, #channelNameandSubscribers p{
+    margin: 0;
+    padding: 0;
+}
+
+#videoChnagableData{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:6px;
+}
+
+#likes , #dislikes {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 8px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+#share{
+    border-radius: 20px;
+    padding: 4px 8px;
+}
+
+#download{
+    border-radius: 20px;
+    padding: 4px 8px;
+    margin-right: 2px;
+}
+
+#comments{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.comments{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.comments p{
+    margin: 0;
+    padding: 0;
+}
+
+#commentButtons > *{
+    margin: 2px;
 }

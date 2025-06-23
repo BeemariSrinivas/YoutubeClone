@@ -1,7 +1,6 @@
 import Channel from "../Model/channelModel.js";
 
-export async function createchannel(name, description, banner) {
-    const userID = localStorage.getItem("userID")||"";
+export async function createchannel(name, description, banner, userID) {
     const subscribers = ((Math.random()*100).toFixed(2))*100;
     try{
         if(userID!==""){
@@ -14,7 +13,7 @@ export async function createchannel(name, description, banner) {
                     subscribers : subscribers,
                     owner : userID
                 });
-                return channel;
+                return newChannel;
             }
             else{
                 throw new Error("User has already a channel");
@@ -23,5 +22,35 @@ export async function createchannel(name, description, banner) {
     }
     catch(error){
         throw new Error("Channel not Created, try again later");
+    }
+}
+
+export async function checkChannel(id){
+    try{
+        const channel = await Channel.findOne({owner:id});
+        if(channel){
+            return channel;
+        }
+        else{
+            return false;
+        }
+    }
+    catch(error){
+        throw new Error(error.message);
+    }
+}
+
+export async function findChannel(id) {
+    try{
+        const channel = await Channel.findById(id);
+        if(channel){
+            return channel;
+        }
+        else{
+            return false;
+        }
+    }
+    catch(error){
+        throw new Error(error.message);
     }
 }

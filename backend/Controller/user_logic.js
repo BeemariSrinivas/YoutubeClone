@@ -2,9 +2,9 @@ import User from "../Model/userModel.js";
 import bcrypt from "bcrypt";
 
 export async function createUser(name, email, password, avatar){
-    const existingUser = User.findOne({email:email});
-    const hashedPassword = await bcrypt.hash(password,10);
     try{
+        const existingUser = await User.findOne({email:email});
+        const hashedPassword = await bcrypt.hash(password,10);
         if(!existingUser){
             const user = await User.create({
                 username : name,
@@ -26,16 +26,30 @@ export async function createUser(name, email, password, avatar){
 
 
 export async function checkUserExits(email, password) {
-    const existingUser = await User.findOne({email:email});
-    if(existingUser){
-        if(await bcrypt.compare(password,existingUser.password)){
-            return existingUser;
-        }
-        else{
-            throw new Error("Incorrect Email or Password");
+    try{
+        const existingUser = await User.findOne({email:email});
+        if(existingUser){
+            if(await bcrypt.compare(password,existingUser.password)){
+                return existingUser;
+            }
+            else{
+                throw new Error("Incorrect Email or Password");
+            }
         }
     }
-    else{
+    catch(error){
         throw new Error("User not Registered.........Please register");
+    }
+}
+
+export async function fetchUser(id) {
+    try{
+        const user = User.findById(id);
+        if(user){
+            return user;
+        }
+    }
+    catch(error){
+        throw new Error("Failed to get User");
     }
 }

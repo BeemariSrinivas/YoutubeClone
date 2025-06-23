@@ -8,6 +8,11 @@ import HomePage from './Components/HomePage.jsx'
 import UserAuthenticationPage from './Components/UserAuthenticationPage.jsx'
 import UserRegistrationPage from './Components/UserRegistrationPage.jsx'
 import CreateChannelPage from './Components/CreateChannelPage.jsx'
+import ChannelPage from './Components/ChannelPage.jsx'
+import { UserProvider } from './Components/UserContex.jsx'
+import UploadVideoPage from './Components/UploadVideoPage.jsx'
+import VideoPlayerPage from './Components/VideoPlayerPae.jsx'
+import VideoEditPage from './Components/VideoEditPage.jsx'
 
 const appRouter = createBrowserRouter([
   {
@@ -30,6 +35,22 @@ const appRouter = createBrowserRouter([
         path : "/createChannel",
         element : <CreateChannelPage/>
       },
+      {
+        path : "/channel/:id",
+        element : <ChannelPage/>
+      },
+      {
+        path : "/upload/video",
+        element : <UploadVideoPage/>
+      },
+      {
+        path : "/video/:id",
+        element : <VideoPlayerPage/>
+      },
+      {
+        path : "/videoedit/:id",
+        element : <VideoEditPage/>
+      }
     ],
     errorElement : <NotFound/>
   }
@@ -37,9 +58,9 @@ const appRouter = createBrowserRouter([
 
 
 createRoot(document.getElementById('root')).render(
-  <RouterProvider router={appRouter}>
-    <StrictMode>
-    <App />
-  </StrictMode>,
-  </RouterProvider>
+    <UserProvider>
+      <StrictMode>
+        <RouterProvider router={appRouter}/>
+      </StrictMode>
+    </UserProvider>
 )

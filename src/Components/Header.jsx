@@ -3,25 +3,28 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "./UserContex.jsx";
 
 function Header(props){
-    const toggleSidebar = props.toggleSidebar;
     const navigate = useNavigate();
-    const userID = localStorage.getItem("userID")||"";
-    const accessToken = localStorage.getItem("token")||"";
-    const avatar = localStorage.getItem("avatar")||"";
+    const toggleSidebar = props.toggleSidebar;
+    const {userID, avatar, channel, clearUser} = useContext(UserContext);
 
     function handleSignIn(){
         navigate("/authentication");
     }
 
     function handleSignOut(){
-        localStorage.clear();
+        clearUser();
+        alert("You have Signed Out Successfully");
+        navigate("/");
     }
 
     return(
         <div id="header">
-            <button onClick={toggleSidebar}><GiHamburgerMenu size={20}/></button>
+            <button id="hamburgerbutton" onClick={toggleSidebar}><GiHamburgerMenu size={20}/></button>
             <div id="logo">
                 <FaYoutube size={30}/>
                 Youtube
@@ -32,9 +35,9 @@ function Header(props){
             </div>
             {userID&&avatar?
                 <div>
-                    <img id="homeAvatar" src={avatar} alt={userID} height="60px" width="60px"/>
+                    <img key={avatar} id="homeAvatar" src={avatar} alt={userID} height="60px" width="60px"/>
                     <button onClick={handleSignOut} id="signIn">Sign Out</button>
-                    <Link to="/createChannel"><span>Create Channel</span></Link>
+                    {channel?<Link to={`/channel/${channel}`}><span>View Channel</span></Link>:<Link to="/createChannel"><span>Create Channel</span></Link>}
                 </div>:
                 <button onClick={handleSignIn} id="signIn">Sign In</button>}
         </div>

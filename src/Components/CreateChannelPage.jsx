@@ -2,12 +2,16 @@ import { useState } from "react";
 import "../index.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "./UserContex.jsx";
 
-function CreateChannelPage(){
-    const navigate = useNavigate("");
+function CreateChannelPage()
+{
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [banner, setBanner] = useState("");
+    const {userID, updateChannel} = useContext(UserContext);
 
     function handleSubmit(event){
         event.preventDefault();
@@ -28,7 +32,7 @@ function CreateChannelPage(){
         setBanner(value);
     }
 
-    function handleCreateChannel(){
+    async function handleCreateChannel(){
         if(name===""){
             alert("Channel Name can't be empty");
             return;
@@ -42,20 +46,25 @@ function CreateChannelPage(){
             return;
         }
         else{
-            try{
-                const res = axios.post("http://localhost:3300/user/createchannel",{
-                    name : name,
-                    description : description,
-                    banner : banner,
-                });
-                if(res.data){
-                    setName("");
-                    setDescription("");
-                    setBanner("");
-                    localStorage.setItem("channelID",res.data.channel);
-                    alert("Channel Created Succesfully");
-                    navigate(`/channel/${res.data.channel}`);
-                }
+                try{
+                    const res = await axios.post("http://localhost:3300/user/channel", 
+                        {
+                            name : name,
+                            description : description,
+                            banner : banner,
+                            userID : userID
+                        });
+                    if(res.data)
+                        {
+                        setName("");
+                        setDescription("");
+                        setBanner("");
+                        
+                        updateChannel(res.data.channel);
+
+                        alert("Channel Created Succesfully");
+                        navigate(`/channel/${res.data.channel}`);
+                    }
             }
             catch(error){
                 setName("");

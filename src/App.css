@@ -10,17 +10,20 @@
 
 #sidebar{
     border: 1px solid black;
-    height: 100svh;
+    min-height: 100%;
     width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 6px;
 }
 
 #content{
     border: 1px solid black;
     width: 100%;
-    height: 100svh;
+    min-height: 100svh;
+    padding: 6px;
+    margin-bottom: 6px;
 }
 
 #header{
@@ -47,4 +50,9 @@
 
 #homeAvatar{
     border-radius: 50%;
+}
+
+#hamburgerbutton{
+    display: flex;
+    justify-content: center;   
 }

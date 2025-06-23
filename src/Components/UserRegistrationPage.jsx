@@ -2,6 +2,8 @@ import { useState } from "react";
 import "../index.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "./UserContex.jsx";
 
 function UserRegistrationPage(){
     const navigate = useNavigate();
@@ -10,6 +12,8 @@ function UserRegistrationPage(){
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [avatar, setAvatar] = useState("");
+
+    const { updateUser } = useContext(UserContext);
 
     function handleSubmit(event){
         event.preventDefault();
@@ -80,10 +84,13 @@ function UserRegistrationPage(){
                     setPassword("");
                     setConfirmPassword("");
                     setAvatar("");
-                    localStorage.clear();
-                    localStorage.setItem("userID",res.data.user);
-                    localStorage.setItem("token",res.data.token);
-                    localStorage.setItem("avatar",res.data.avatar);
+
+                    updateUser({
+                        userID : res.data.user,
+                        avatar : res.data.avatar,
+                        token : res.data.token
+                    });
+
                     alert("User Registration Successful!!!...Redirecting you to Home Page");
                     navigate("/");
                 }
