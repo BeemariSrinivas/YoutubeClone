@@ -14,6 +14,7 @@ import UploadVideoPage from './Components/UploadVideoPage.jsx'
 import VideoPlayerPage from './Components/VideoPlayerPae.jsx'
 import VideoEditPage from './Components/VideoEditPage.jsx'
 
+//app routes manages all the routes in the app
 const appRouter = createBrowserRouter([
   {
     path : "/",

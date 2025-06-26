@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+//channel schema
 const channelSchema = mongoose.Schema({
     name : {
         type : String,
@@ -23,6 +24,7 @@ const channelSchema = mongoose.Schema({
     }
 });
 
+//channel model
 const Channel = mongoose.model("Channel", channelSchema);
 
 export default Channel;

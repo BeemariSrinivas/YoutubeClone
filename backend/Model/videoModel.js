@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+//video schema
 const videoSchema = mongoose.Schema({
     title : {
         type : String,
@@ -39,6 +40,7 @@ const videoSchema = mongoose.Schema({
     }
 });
 
+//video model
 const Video = mongoose.model("Video", videoSchema);
 
 export default Video;

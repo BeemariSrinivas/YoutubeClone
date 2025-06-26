@@ -1,6 +1,7 @@
 import { text } from "express";
 import mongoose from "mongoose";
 
+//comment schema
 const commentSchema = mongoose.Schema({
     text : {
         type : String,
@@ -28,7 +29,7 @@ const commentSchema = mongoose.Schema({
     }
 });
 
-
+//comment model
 const Comment = mongoose.model("Comment", commentSchema);
 
 export default Comment;

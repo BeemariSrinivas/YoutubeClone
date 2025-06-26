@@ -1,5 +1,7 @@
 import Channel from "../Model/channelModel.js";
 
+
+//function to create a new channel
 export async function createchannel(name, description, banner, userID) {
     const subscribers = ((Math.random()*100).toFixed(2))*100;
     try{
@@ -25,6 +27,7 @@ export async function createchannel(name, description, banner, userID) {
     }
 }
 
+//function to find channel and return channel information
 export async function checkChannel(id){
     try{
         const channel = await Channel.findOne({owner:id});
@@ -40,6 +43,7 @@ export async function checkChannel(id){
     }
 }
 
+//function to find channel and return channel information
 export async function findChannel(id) {
     try{
         const channel = await Channel.findById(id);

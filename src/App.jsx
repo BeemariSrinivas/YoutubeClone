@@ -7,15 +7,18 @@ import { Outlet } from 'react-router-dom'
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
+  //detects the hamburger menu toggle
   function toggleSidebar(){
     setSidebarOpen((prev)=>!prev);
   }
 
+  //renders the whole app
   return (
     <div id="app">
       <Header toggleSidebar={toggleSidebar}/>
       <div id="mainArea">
-        {sidebarOpen&&<Sidebar/>}
+        <Sidebar isOpen = {sidebarOpen} />
+        {sidebarOpen&&<div id="backdrop" onClick={toggleSidebar}></div>}
         <div id="content">
           <Outlet/>
         </div>

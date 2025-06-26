@@ -11,9 +11,10 @@ import { CiStreamOn } from "react-icons/ci";
 import "../App.css";
 import { Link } from "react-router-dom";
 
-function Sidebar(){
+//displays the side bar
+function Sidebar({isOpen}){
     return(
-        <div id="sidebar">
+        <div id="sidebar" className={isOpen?"show":""}>
             <Link to="/">
                 <div className="sidebarIcons">
                     <AiFillHome size={20}/>

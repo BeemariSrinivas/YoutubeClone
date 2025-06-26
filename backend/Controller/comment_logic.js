@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Comment from "../Model/commentModel.js";
 
+//function to add a new comment
 export async function newComment(text, user, username, video) {
     const likes = ((Math.random()*100).toFixed(2))*10;
     const dislikes = ((Math.random()).toFixed(2));
@@ -25,6 +26,8 @@ export async function newComment(text, user, username, video) {
     }
 }
 
+
+//function to find all comments of a videos and return them
 export async function comments(id) {
     try{
         const comments = Comment.find({video:id});
@@ -38,6 +41,7 @@ export async function comments(id) {
     }
 }
 
+//function to delete a comment
 export async function deleteComment(id) {
     try{
         const comment = Comment.findByIdAndDelete(id);
@@ -50,6 +54,8 @@ export async function deleteComment(id) {
     }
 }
 
+
+//function to edit a comment
 export async function editComment(text,id) {
     try{
         const comment = Comment.findByIdAndUpdate(id,{text:text});

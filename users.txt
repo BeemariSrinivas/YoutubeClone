@@ -1,5 +1,27 @@
-mail: welovecric@gmail.com
+These are the user details who currently own a channel
+
+username : Cric_Fandom
+email: welovecric@gmail.com
 password : Cric@123
 
-mail : Micheal Rhody
+username : Micheal Rhody
+email : micheal@gmail.com
 password : Rhody@123
+
+
+username : Rishi
+email : rishi@gmail.com
+password : Letslearn@86
+
+username : vicky
+email : vickyfun@gmail.com
+password : Vicky66$$
+
+username : Micky Ross
+email : Ross@yahoo.com
+password : WeRo$$66
+
+
+username : Brain O Corner
+email : brain@gmail.com
+password : FastandFurious$$12

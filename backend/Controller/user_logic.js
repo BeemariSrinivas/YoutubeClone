@@ -1,6 +1,9 @@
 import User from "../Model/userModel.js";
 import bcrypt from "bcrypt";
 
+
+
+//function to register a new user
 export async function createUser(name, email, password, avatar){
     try{
         const existingUser = await User.findOne({email:email});
@@ -24,10 +27,18 @@ export async function createUser(name, email, password, avatar){
 }
 
 
-
-export async function checkUserExits(email, password) {
+//function to login existing user
+export async function checkUserExits(emailUsername, password) {
     try{
-        const existingUser = await User.findOne({email:email});
+        const existingUser = await User.findOne({
+            $or: [
+                {email:emailUsername},
+                {username:emailUsername}
+            ]
+        });
+        if(!existingUser){
+            throw new Error("User not Registered.........Please register");
+        }
         if(existingUser){
             if(await bcrypt.compare(password,existingUser.password)){
                 return existingUser;
@@ -38,10 +49,11 @@ export async function checkUserExits(email, password) {
         }
     }
     catch(error){
-        throw new Error("User not Registered.........Please register");
+        throw new Error(error.message);
     }
 }
 
+//function to retreive a user information
 export async function fetchUser(id) {
     try{
         const user = User.findById(id);

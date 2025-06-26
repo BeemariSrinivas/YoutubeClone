@@ -7,7 +7,9 @@ export function UserProvider({ children }) {
   const [avatar, setAvatar] = useState(localStorage.getItem("avatar") || "");
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [channel, setChannel] = useState(localStorage.getItem("channel") || "");
+  const [searched, setSearched] = useState("");
 
+  //Globally sets the currently logged in or newly registered user information
   const updateUser = ({ userID, avatar, token }) => {
     if (userID) {
       localStorage.setItem("userID", userID);
@@ -23,11 +25,13 @@ export function UserProvider({ children }) {
     }
   };
 
+  //Globally sets the channel information of the user who is currently logged in/if they own a channel
   const updateChannel = (channelID) => {
     localStorage.setItem("channel", channelID);
     setChannel(channelID);
   };
 
+  //Gloobally clears the user and channel info when the user logs out
   const clearUser = () => {
     localStorage.clear();
     setUserID("");
@@ -42,9 +46,11 @@ export function UserProvider({ children }) {
       avatar,
       token,
       channel,
+      searched,
       updateUser,
       updateChannel,
-      clearUser
+      clearUser,
+      setSearched
     }}>
       {children}
     </UserContext.Provider>
